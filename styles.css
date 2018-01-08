@@ -1,0 +1,131 @@
+html {
+    background: linear-gradient(to bottom, #820a0a 40%, #000000 100%);
+    background-size: auto;
+}
+
+h1 {
+    font-family: sans-serif;
+    font-size: 2em;
+    color: #820a0a;
+    text-align: center;
+    border-top: 0.125em solid #000000;
+    border-bottom: 0.125em solid #000000;
+}
+
+h2 {
+    font-family: sans-serif;
+    font-size: 1em;
+    color: #820a0a;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+body {
+    max-width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #e0e0e0;
+}
+
+nav {
+    border-bottom: 0.125em solid #000000;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+nav li {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+
+.footer {
+    border-top: 0.125em solid #000000;
+    border-bottom: 0.125em solid #000000;
+    text-align: center;
+    margin-top: 3em;
+
+}
+
+.joblisting {
+    border: 0.25em solid #000000;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 1em;
+}
+
+.jobheader {
+    border-top: 0.125em solid #000000;
+    border-bottom: 0.125em solid #000000;
+    text-align: center;
+    color: #820a0a;
+}
+
+.jobdesc {
+    border-top: 0.125em solid #000000;
+    border-bottom: 0.125em solid #000000;
+}
+
+form {
+    margin-left: 30%;
+    margin-right: 30%;
+    max-width: 60%;
+    align-content: center;
+    
+}
+
+input {
+    margin-left: 30%;
+    margin-right: 30%;
+    max-width: 60%;   
+}
+
+input[type=text]:focus {
+    background-color: lightblue;
+    border: 3px solid #555;
+    margin-left: 30%;
+    margin-right: 30%;
+    max-width: 60%;
+
+}
+
+input[type=password]:focus {
+    background-color: lightblue;
+    border: 3px solid #555;
+    margin-left: 30%;
+    margin-right: 30%;
+    max-width: 60%;
+}
+
+.user {
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    text-align: center;
+}
+
+.infobox {
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 0.125em solid black;
+}
+
+a {
+    font-size: 1em;
+}
+
+.intro {
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;;
+}
+
+.separator {
+    border: 0.125em solid black;
+    margin-bottom: 2em;
+}
+

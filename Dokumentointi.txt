@@ -1,0 +1,143 @@
+~~~~~~~~~~~~~~~~~~~~~~~
+Kuisma Närhi
+www-ohjelmoinnin harjoitustyön dokumentaatio 22.12.2017
+~~~~~~~~~~~~~~~~~~~~~~~~
+1.0 työn kuvaus
+Tavoitteena on luoda projektipankki, jossa eri tahojen lisäämät työtarjoukset ovat listattuna saapumisjärjestyksessä.
+Työn tulisi täyttää 50+ pisteen suoritus tehtävänannon mukaisesti.
+
+palikka			pisteet yht.
+responsiivinen ulkoasu	5
+tietokannan käyttö	    10
+käyttäjän autentikointi	15
+roolit			        17
+front controller	    20
+mvc			            25
+SEO			            28
+yksikkötestit		    33
+canvas			        36
+dokumentointi		    41
+esteettömyys		    44
+ei kuvia		        45
+selainten tarkistus	    47
+(vertaisarviointi)	    +5
+
+1.1 määrittelyvaatimukset
+käyttäjät voivat:
+-luoda tilejä
+-tileiltään luoda työtarjouksia, jotka listataan etusivulla.
+Admin-käyttäjällä on pääsy hallinnoimaan listan sisältöä
+-poistaa olioita
+Työtarjouksissa näkyvät:
+-työn luonne(dippatyö, kandi...)
+-työn kesto
+-työn kuvaus
+-yhteystiedot
+
+1.2 kehitysympäristö, tarkastajan pystytysohjeet
+käytössä on cloud9-onlinetyökalu, jossa mukana mysql-tietokannan pyörittämiseen phpmyadmin. Työn tarkastaja voi pystyttää oman ympäristön korjaamalla utils.php:sta omat
+c9-tietokantakäyttäjänsä ja salasanansa connectDb()-funktioon.
+
+Kopioi pakatut php-tiedostot ja luo tietokantaan schema.sql-tiedoston mukaiset taulut users ja jobs. Tämän lisäksi luo itsellesi phpadminilla tai 
+insertillä oma admin-käyttäjä. Syötä salasanaksi haluamastasi salasanasta hashi (php:n password_hash()-funktiolla tehty) jotta login toimii.
+
+2.0 Moduulit
+eri tiedostot paketissa
+
+2.1 index.php
+Latautuva etusivu. Rakentaa sivun utils.php:n funktioiden avulla ja ohjaa linkkien mukaan muille sivun osille.
+
+2.2 utils.php
+funktiokirjasto.
+
+siteHeader()
+rakentaa html-tiedoston alun.
+
+siteNavigation()
+riippuen kirjautuneen käyttäjän tilin tasosta (vieras, käyttäjä vai admin) rakentaa sivun navigaationäkymän.
+Vieraalle tarjotaan listan lisäksi kirjaudu- ja rekisteröidy-linkit.
+
+Käyttäjälle tarjotaan uloskirjautumis- ja työlistauksen syöttö-linkkiä.
+
+Adminilla on listauksen poistomahdollisuus.
+
+connectDb()
+palauttaa tietokantayhteyden.
+
+siteFooter()
+sivun alapalkin luonti.
+
+2.3 login.php
+olemassaolevaan tiliin kirjautuminen. Tietokannasta haetaan käyttäjän tiedot ja session-muuttujaan tallennetaan käyttäjänimi, id ja level. 
+Salasana verifioidaan tietokantaan hashattuun vertaamalla.
+
+2.4 register.php
+uuden tilin luonti. Salasanasta tarkastetaan, että siinä on 9-255 merkkiä, vähintään yksi luku sekä isoja ja pieniä kirjaimia. 
+Salasana hashataan ja tallennetaan kantaan kryptattuna.
+Käyttäjänimenä toimii yrityksen nimi, joka näkyy listauksissa.
+
+2.5 joblist.php
+etusivun listan luoja. Hakee kannasta kaikki listatut työt ja luo foreach-loopilla html-palikan sivulle.
+
+2.6 logout.php
+tuhoaa session-tiedot ja kirjaa näin käyttäjän ulos.
+
+2.7 submit.php
+uusien listajäsenten syöttö. näkyvissä vain kirjautuneelle käyttäjälle.
+
+2.8 admin.php
+listajäsenten poisto. Näkyvissä vain adminkäyttäjälle.
+
+2.9 styles.css
+html:n muotoilu. Käytössä on lähes poikkeuksetta prosentti- tai em-mitat jotta sivu on responsiivinen.
+Testaillessa eri ruutukokoja css hajoaa vasta rajatapauksissa, kun ruutu venytetään äärimmäisen ohueksi johonkin suuntaan.
+
+2.10 schema.sql
+tietokantojen skeematiedosto.
+
+3.0 arviointiperusteet
+
+3.1 responsiivinen ulkoasu
+css on tehty skaalautuvaksi
+
+3.2 tietokannan käyttö
+kaikki käyttäjätieto tallennetaan kantaan ja listaelementit ovat sieltä haettuja.
+
+3.3 käyttäjän autentikointi ja roolit
+Käytössä on hashatut salasanat jotka tarkistetaan kannasta. Käyttäjätileillä on level-muuttuja, joka kertoo php:lle mitkä osat sivustosta näyttää.
+
+3.4 front controller ja MVC
+erillistä control-oliota ei ole, mutta front-näkymä on MVC-mallin mukaisesti toteutettu php-funktioilla jotka tarjoavat näkymän käyttäjäsyötteiden ja kirjautuneen tilin mukaisesti.
+controllerin selkeimmät toiminnot näkyvät index.php:ssä ja utils.php:ssä; sivun navigointi ja hakemat sivunäkymät tulevat täältä löytyvän koodin mukaisesti. Malli on header, navi, sisältö sekä footer.
+
+3.5 SEO
+kaikki elementit ovat nimetty eikä kuvia tms. hakukonetta hämäävää ole sivustolla. 
+Sivun paragraafeissa on selkeä kuvaus sivun sisällöstä hakukoneille helposti pureskeltavassa muodossa.
+Kaikki sisältö on saatavilla ilman kirjautumisia/tms. formeja ja luettavissa ilman css:ää. Sivun linkkirakenne on yksinkertainen.
+
+3.6 yksikkötestaus
+Kaikki moduulit on testattu tekovaiheessa sellaisenaan dummykoodilla; luoko php-funktiot halutut html-näkymät. 
+Tietokantayhteydet on testattu syöttämällä manuaalisesti dataa ja hakemalla sitä php-koodilla, sekä syöttämällä sivun kautta ja tarkistamalla phpmyadminista syötteen 
+perillepääsy. Tekovaiheessa on käytetty koodia, joka printtaa sivulle näkyviin mm. session-muuttujia. (echo $_SESSION["id"]). Integraatiotestaus on suoritettu yhdistämällä 
+tietokantapalikat html:n muodostavaan php-koodiin ja css on liitetty tietoihin selkiyttämään luettavuutta. Eri mittaisia syötteitä ja ruutukokoja on kokeiltu.
+
+3.7 Canvas-elementti
+footerissa on canvasilla tehty placeholder-"kuva".
+
+3.8 esteettömyys
+Sivulla on vain tekstiä ja elementit on nimetty esim. lukulaitteita varten. Sisältöä ei ole piilotettu kuviin/muihin elementteihin.
+
+3.9 selaintarkistus
+Testattu mozillalla, chromella, IE:llä, android-puhelimen chromella sekä erillisen java-sovelluksen www-ikkunalla.
+
+3.10 ei kuvia
+Logon placeholder on luotu canvas-elementillä ja kaikki muu grafiikka css:llä.
+
+4.0 Lopuksi
+
+Tämä työ on tarkoitus olla pohjana clusterin käyttöön tarkoitetulle projektipankille. To-do- listassa on mm. scriptisuojat, parempi graafinen toteutus ja
+tietokantasyötteiden sisältyminen erilliseen tauluun, josta admin lisää sivulle tarkistamansa listaukset.
+Listan jäsenten järjestely, vanhojen listausten automaattinen poisto ja vastaavat ominaisuudet ovat suunniteltu,
+mutta tälle päivämäärälle niitä ei keretty toteuttaa. (22.12.)
+
+(c) Kuisma Närhi
