@@ -1,6 +1,10 @@
 ~~~~~~~~~~~~~~~~~~~~~~~
 Kuisma Närhi
 www-ohjelmoinnin harjoitustyön dokumentaatio 22.12.2017
+
+Update 8.1.
+Octo3:n reactJS-codecampilla on lähdetty devaamaan react-fronttia sivustolle ja ko. repo päivitetään tänne kun ensimmäinen salonkikelpoinen versio on koossa.
+
 ~~~~~~~~~~~~~~~~~~~~~~~~
 1.0 työn kuvaus
 Tavoitteena on luoda projektipankki, jossa eri tahojen lisäämät työtarjoukset ovat listattuna saapumisjärjestyksessä.
